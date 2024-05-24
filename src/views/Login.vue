@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col justify-evenly items-center w-96 h-80">
-    <div class="flex flex-col gap-4 w-full relative">
-      <div class="flex w-full items-center">
+  <div class="flex items-center justify-center h-[85%]">
+    <div class="flex flex-col gap-6 w-[30%] ">
+      <div class="flex w-full">
         <Input 
           type="text"
           placeholder="Username"
@@ -10,7 +10,7 @@
           styles="w-full mr-2 border-l-0 rounded-l-none focus:outline-none"
         />
       </div>
-      <div class="flex w-full items-center">
+      <div class="flex w-full ">
         <Input 
           :type="isVisible ? 'text' : 'password'"
           placeholder="Password"
@@ -19,31 +19,30 @@
           styles="w-full border-x-0 rounded-none focus:outline-none"
         />
       </div>
-    </div>
-    <div class="flex justify-between w-full px-2">
-      <div class="flex items-center gap-2">
-        <input type="checkbox">
-        <span class="text-sm">Remember me</span>
+      <div class="flex justify-between w-full px-2">
+        <div class="flex items-center gap-2">
+          <input type="checkbox">
+          <span class="text-sm">Remember me</span>
+        </div>
+        <div>
+          <span class="text-sm"><a href="#" class="text-primary">Forgot your password?</a></span>
+        </div>
       </div>
-      <div>
-        <span class="text-sm"><a href="#" class="text-primary">Forgot your password?</a></span>
+      <div class="w-full px-2">
+        <button 
+          text="Sign in"
+          variant="primary"
+          class="w-full"
+          :fn="handleLogin"
+        />
       </div>
-    </div>
-    <div class="w-full px-2">
-      <Button 
+      <button
         text="Sign in"
-        variant="primary"
-        class="w-full"
-        :fn="handleLogin"
-      />
+        class="bg-black-400 w-full"
+      >
+      </button>
     </div>
-    <button
-      text="Sign in"
-      class="bg-black-400 w-full"
-    >
-      
-    </button>
-  </div>
+    </div>
 </template>
 
 <script setup>
