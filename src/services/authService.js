@@ -10,3 +10,17 @@ export const login = async (userInfo) => {
     throw error
   }
 }
+
+export const logout = async () => {
+  try {
+    await api.post("/auth/logout", null, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    localStorage.removeItem("token")
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}

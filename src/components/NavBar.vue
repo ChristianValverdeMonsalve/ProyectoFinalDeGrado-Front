@@ -25,14 +25,17 @@
         </button>
       </li>
     </ul>
-    <button @click="goToLogin" class="focus:outline-none">
+    <button v-if="!isLoggedIn" @click="goToLogin" class="focus:outline-none">
       Login
     </button>
+    <ButtonLogout v-else />
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router'
+import ButtonLogout from './ButtonLogout.vue'
+import { ref, computed } from 'vue'
 
 const router = useRouter()
 
@@ -59,6 +62,10 @@ const goToLogin = () => {
 const goToProfile = () => {
   router.push({ path: '/profile' })
 }
+
+const isLoggedIn = computed(() => {
+  return !!localStorage.getItem('token')
+})
 </script>
 
 <style scoped>

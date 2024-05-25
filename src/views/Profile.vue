@@ -32,7 +32,7 @@ import { ref, onMounted } from 'vue'
 import { getOwnProfile } from '../services/profileService.js'
 import { getOwnBooking } from '../services/bookingService.js'
 
-const user = ref(null)
+const user = ref('')
 const userLoading =ref(true)
 
 const bookings = ref([])
