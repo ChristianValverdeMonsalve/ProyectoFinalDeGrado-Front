@@ -5,23 +5,13 @@
     </div>
     <ul class="flex gap-6 w-3/5 justify-center items-center h-full">
       <li>
-        <button @click="goToProfile">
-          Perfil
+        <button @click="goToUsers">
+          Usuarios
         </button>
       </li>
       <li>
-        <button @click="goToBooking">
-          Reservar clase
-        </button>
-      </li>
-      <li>
-        <button @click="goToActivities">
+        <button @click="goToAddActivity">
           Actividades
-        </button>
-      </li>
-      <li>
-        <button @click="goToContact">
-          Contacto
         </button>
       </li>
     </ul>
@@ -35,37 +25,26 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import ButtonLogout from './ButtonLogout.vue'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
 const router = useRouter()
 
 const goToHome = () => {
-  router.push({ path: '/'})
+  router.push({ path: '/' })
 }
 
-const goToBooking = () => {
-  router.push({ path: '/booking' })
+const goToUsers = () => {
+  router.push({ path: '/admin/users' }) // Define the route for the users page
 }
 
-const goToActivities = () => {
-  router.push({ path: '/activities' })
-}
-
-const goToContact = () => {
-  router.push({ path: '/contact' })
-}
-
-const goToLogin = () => {
-  router.push({ path: '/login' })
-}
-
-const goToProfile = () => {
-  router.push({ path: '/profile' })
+const goToAddActivity = () => {
+  router.push({ path: '/admin/activities' }) // Define the route for adding activities
 }
 
 //const isLoggedIn = computed(() => {
 //  return !!localStorage.getItem('token')
 //})
+
 </script>
 
 <style scoped>

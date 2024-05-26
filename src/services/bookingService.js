@@ -2,7 +2,7 @@ import api from "./index"
 
 export const createBooking = async () => {
   try {
-    const { data } = await api.post("/booking/:userId", {
+    const { data } = await api.post("/user/book/:classId", {
       headers: {
         authorization: localStorage.getItem("token")
       }
@@ -18,14 +18,27 @@ export const createBooking = async () => {
   }
 }
 
-export const getOwnBooking = async () => {
+export const deleteBooking = async () => {
   try {
-    const { data } = await api.get("/booking/me", {
-      headers: {
-        authorization: localStorage.getItem("token")
-      }
-    })
-    return data
+    
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const adminCreateBooking = async () => {
+  try {
+    
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const adminDeleteBooking = async () => {
+  try {
+    
   } catch (error) {
     console.error(error)
     throw error

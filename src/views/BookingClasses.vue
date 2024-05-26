@@ -1,16 +1,24 @@
 <template>
   <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Reserva tus clases</h1>
+    <h1 class="text-3xl font-bold mb-6">
+      Reserva tus clases
+    </h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 items-center">
       <div class="timetable">
         <div class="flex justify-between mb-2">
-          <button @click="prevWeek" class="bg-primary text-white px-4 py-2 rounded-md"> Previa </button>
-          <button @click="nextWeek" class="bg-primary text-white px-4 py-2 rounded-md"> Siguiente </button>
+          <button @click="prevWeek" class="bg-primary text-white px-4 py-2 rounded-md">
+            Previa 
+          </button>
+          <button @click="nextWeek" class="bg-primary text-white px-4 py-2 rounded-md">
+            Siguiente 
+          </button>
         </div>
         <table class="w-full table-auto">
           <thead>
             <tr>
-              <th class="px-4 py-6">Time</th>
+              <th class="px-4 py-6">
+                Hora
+              </th>
               <th class="px-4 py-6" v-for="day in days" :key="day">
                 {{ day }}
               </th>
@@ -41,8 +49,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
 import { getAllClasses } from '../services/classService.js'
 import { createBooking } from '../services/bookingService.js'
+import { checkAuth } from '../services/authService.js'
 
 const days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
 const times = ['08:00 AM', '10:00 AM', '12:00 PM', '04:00 PM', '06:00 PM', '08:00 PM']
@@ -71,12 +82,22 @@ const getActivity = (day, time) => {
   return activities.find(activity => activity.day === day && activity.time === time);
 }
 
-const bookClass = (day, time) => {
-  const activity = getActivity(day, time);
+const bookClass = async (day, time) => {
+  if (!checkAuth()) {
+    router.push('/login')
+    return
+  }
+  const activity = getActivity(day, time)
   if (activity) {
-    alert(`You have booked ${activity.name} on ${day} at ${time}`);
+    try {
+      await createBooking({ classId: activity.id })
+      alert(`You have booked ${activity.name} on ${day} at ${time}`)
+    } catch (error) {
+      console.error('Error booking class:', error)
+      alert('Error booking the class.')
+    }
   } else {
-    alert('No class available to book at this time.');
+    alert('No class available to book at this time.')
   }
 }
 
@@ -87,6 +108,15 @@ const prevWeek = () => {
 const nextWeek = () => {
   alert('Show next week\'s schedule');
 }
+
+onMounted(async () => {
+  try {
+    const { data } = await getAllClasses()
+    activities.value = data
+  } catch (error) {
+    console.error('Error fetching classes:', error)
+  }
+})
 </script>
 
 <style scoped>

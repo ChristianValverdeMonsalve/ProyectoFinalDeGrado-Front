@@ -7,7 +7,7 @@ export const useStore = defineStore("store", {
     current: 0,
     navOptions: {
       user: ["Reservar clases", "Actividades", "Contacto", "perfil"],
-      admin: ["Reservar clases", "Actividades", "Contacto", "Usuarios"]
+      admin: ["Usuarios", "Actividades"]
     },
     rol: "admin",
     selectedUser: false,

@@ -15,7 +15,7 @@ export const logout = async () => {
   try {
     await api.post("/auth/logout", null, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        authorization: localStorage.getItem("token")
       }
     })
     localStorage.removeItem("token")
@@ -23,4 +23,22 @@ export const logout = async () => {
     console.error(error)
     throw error
   }
+}
+
+export const checkAdmin = async () => {
+  try {
+    const response = await api.get("/auth/checkAdmin", {
+      headers: {
+        authorization: localStorage.getItem("token")
+      }
+  })
+    return response.data.checkAdmin
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const checkAuth = () => {
+  return !!localStorage.getItem('token')
 }

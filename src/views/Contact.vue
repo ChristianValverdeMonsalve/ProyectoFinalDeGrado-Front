@@ -14,7 +14,7 @@
             type="text" 
             id="name" 
             v-model="formData.name" 
-            class="mt-1 block w-full shadow-sm 2xl:text-2xl rounded-md"
+            class="mt-1 block w-full shadow-sm 2xl:text-2xl  border-secondary  rounded-md border-4"
           >
         </div>
         <div class="mb-4">
@@ -28,7 +28,7 @@
             type="email" 
             id="email" 
             v-model="formData.email" 
-            class="mt-1 block w-full shadow-sm 2xl:text-2xl border-gray-300 rounded-md"
+            class="mt-1 block w-full shadow-sm 2xl:text-2xl border-secondary rounded-md border-4"
           >
         </div>
         <div class="mb-4">
@@ -41,7 +41,7 @@
           <textarea 
             id="message" 
             v-model="formData.message" 
-            class="mt-1 block w-full shadow-sm 2xl:text-2xl border-gray-300 rounded-md"
+            class="mt-1 block w-full shadow-sm 2xl:text-2xl border-secondary rounded-md border-4"
           >
           </textarea>
         </div>
@@ -67,5 +67,5 @@ const submitForm = () => {
 </script>
 
 <style scoped>
-/* Add any additional scoped styles here */
+
 </style>

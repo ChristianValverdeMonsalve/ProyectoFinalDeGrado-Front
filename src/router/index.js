@@ -6,6 +6,8 @@ import Contact from "../views/Contact.vue"
 import Activities from "../views/Activities.vue"
 import BookingClasses from "../views/BookingClasses.vue"
 import Profile from "../views/Profile.vue"
+import AdminUsers from "../views/AdminUsers.vue"
+import AdminActivities from "../views/AdminActivities.vue"
 
 
 const routes = [
@@ -14,7 +16,9 @@ const routes = [
   { path: "/contact", component: Contact },
   { path: "/activities", component: Activities },
   { path: "/booking", component: BookingClasses },
-  { path: "/profile", component: Profile }
+  { path: "/profile", component: Profile },
+  { path: "/usersadmin", component: AdminUsers },
+  { path: "/activitiesadmin", component: AdminActivities }
 ]
 
 const router = createRouter({
